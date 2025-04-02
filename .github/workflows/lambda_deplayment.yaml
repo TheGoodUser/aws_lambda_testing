@@ -9,13 +9,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v2
       - name: Install zip tool
         uses: montudor/action-zip@v1
       - name: Create Zip file for Lambda function
-        run: zip -r code.zip . -x "*.git*" "*.github*"
+        run: zip -r code.zip .
       - name: AWS CLI v2
-        uses: aws-actions/aws-cli@v2
+        uses: imehedi/actions-awscli-v2@latest
         with:
           args: "lambda update-function-code \
             --function-name arn:aws:lambda:eu-north-1:443370708165:function:api_data_updation \
